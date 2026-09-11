@@ -33,16 +33,34 @@ function gameoverInput()
   end
 end
 
-function compy.singleclick(x, y)
+compy.input.hooks.singleclick = function(x, y)
   if singleclick then
     singleclick(x, y)
   end
+  return true
 end
 
-function compy.doubleclick(x, y)
+compy.input.hooks.doubleclick = function(x, y)
   if doubleclick then
     doubleclick(x, y)
   end
+  return true
+end
+
+-- The board owns the pointer and keyboard for the whole run:
+-- ordinary presses and stray keys must not reach the console
+-- beneath it, while reserved host controls are handled before
+-- the project route.
+compy.input.hooks.mousepressed = function()
+  return true
+end
+
+compy.input.hooks.keypressed = function()
+  return true
+end
+
+compy.input.hooks.textinput = function()
+  return true
 end
 
 initialize()
