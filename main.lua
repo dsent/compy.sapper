@@ -33,14 +33,25 @@ function gameoverInput()
   end
 end
 
-compy.input.hooks.singleclick = function(x, y)
+function goBack()
+  if state.started then
+    actionInit()
+  else
+    stop()
+  end
+end
+
+compy.input.shortcuts.keypressed.escape = compy.input.fn.
+    stop_here(compy.input.fn.ignore_repeat(goBack))
+
+function compy.input.hooks.singleclick(x, y)
   if singleclick then
     singleclick(x, y)
   end
   return true
 end
 
-compy.input.hooks.doubleclick = function(x, y)
+function compy.input.hooks.doubleclick(x, y)
   if doubleclick then
     doubleclick(x, y)
   end
@@ -51,15 +62,15 @@ end
 -- ordinary presses and stray keys must not reach the console
 -- beneath it, while reserved host controls are handled before
 -- the project route.
-compy.input.hooks.mousepressed = function()
+function compy.input.hooks.mousepressed()
   return true
 end
 
-compy.input.hooks.keypressed = function()
+function compy.input.hooks.keypressed()
   return true
 end
 
-compy.input.hooks.textinput = function()
+function compy.input.hooks.textinput()
   return true
 end
 
