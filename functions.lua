@@ -380,7 +380,7 @@ end
 
 function flowInitState()
   readyInput()
-  state.time_started = nil
+  state.started = nil
   counters.unlocked = 0
   counters.seconds = 0
   counters.clicks = 0
